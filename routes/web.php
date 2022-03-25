@@ -8,7 +8,7 @@ use App\Http\Controllers\ViewerController;
 use App\Http\Controllers\CookieController;
 use App\Http\Controllers\SessionController;
 // use then directory of the controller then the name of controller
-
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +45,13 @@ Route::post('/user/register',
     'as' => 'register'
 ]);
  */
+
+//definging the route for posts
+Route::get('/posts', [PostController::class, 'getPost']);
+//for inserting the post
+Route::get('/add-post', [PostController::class, 'addPost'])->name('add-post');
+
+Route::post('/add-post', [PostController::class, 'addPostSubmit'])->name('add-post-submit');
 
 Route::get('/ourproducts', function(){
     $products = [['type'=>'Smartphone', 'model'=>"iPhone X", 'price'=>"$999.99"],
