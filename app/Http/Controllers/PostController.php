@@ -37,6 +37,8 @@ class PostController extends Controller
         $post = DB::table('posts')->where('id', $id)->first();
         return view('edit-post', compact('post'));
     }
+
+    //check edit post is working or not
     public function updatePost(Request $request){
         $id = $request->input('id');
         $title = $request->input('title');
