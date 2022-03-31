@@ -53,6 +53,14 @@ Route::get('/add-post', [PostController::class, 'addPost'])->name('add-post');
 
 Route::post('/add-post', [PostController::class, 'addPostSubmit'])->name('add-post-submit');
 
+//now we will create a dynamic route for the post
+Route::get('/posts/{id}', [PostController::class, 'getPostById'])->name('postId');
+//now we will create a route for editing the post
+Route::get('/edit-post/{id}', [PostController::class, 'editPostById'])->name('post.edit');
+Route::post('/update-post/{id}', [PostController::class, 'editPostByIdSubmit'])->name('post.update');
+//delete route
+Route::get('/delete-post/{id}', [PostController::class, 'deletePost'])->name('post.delete');
+
 Route::get('/ourproducts', function(){
     $products = [['type'=>'Smartphone', 'model'=>"iPhone X", 'price'=>"$999.99"],
     ['type'=>'Watch', 'model'=>"FastTrack", 'price'=>"$1,199.99"],

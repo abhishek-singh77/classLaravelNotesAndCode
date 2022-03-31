@@ -24,6 +24,32 @@ class PostController extends Controller
         DB::table('posts')->insert(['title'=>$title, 'body'=>$body]);
         return redirect('/posts');
     }
+
+    public function getPostById($id){
+        $post = DB::table('posts')->where('id', $id)->first();
+        //what first() returns is an object of the first row with the given id
+        return view('post', compact('post'));
+        //compact() is a function that takes an array of variables and returns an 
+        //array with the variables as keys and the values as values    
+    }
+
+    public function editPostById($id){
+        $post = DB::table('posts')->where('id', $id)->first();
+        return view('edit-post', compact('post'));
+    }
+    public function updatePost(Request $request){
+        $id = $request->input('id');
+        $title = $request->input('title');
+        $body = $request->input('body');
+        DB::table('posts')->where('id', $id)->update(['title'=>$title, 'body'=>$body]);
+        return redirect('/posts');
+    }
+
+    public function deletePost($id){
+        DB::table('posts')->where('id', $id)->delete();
+        return redirect('/posts');
+    }
+
     
     
 }
